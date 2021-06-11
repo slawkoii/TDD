@@ -6,23 +6,25 @@ namespace NUnitTestCashConverter
 {
     public class Franc : Money
     {
-       
-
-        public Franc(int amount)
+        
+        public Franc(int amount, string currency) : base(amount,currency)
         {
-            this.amount = amount;
+            
         }
-        public Franc Times(int multipleer)
+
+        
+
+        public override Money Times(int multipleer)
         {
-            return new Franc(amount * multipleer);
+            return Money.Franc(amount * multipleer);
         }
 
         public override string ToString()
         {
             return "$" + amount;
         }
-        
 
+        
 
     }
 }

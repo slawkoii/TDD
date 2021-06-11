@@ -7,22 +7,22 @@ namespace NUnitTestCashConverter
     public class Dollar : Money
     {
         
-
-        public Dollar(int amount)
+        public Dollar(int amount,string currency) : base(amount,currency)
         {
-            this.amount = amount;
-        }        
+            
+        }
 
-        public Dollar Times(int multipleer)
+        
+
+        public override Money Times(int multipleer)
         {
-           return new Dollar(amount * multipleer);
+           return Money.Dollar(amount * multipleer);
         }
         public override string ToString()
         {
             return "$" + amount;
         }
 
-      
-
+        
     }
 }
