@@ -4,15 +4,15 @@ using System.Text;
 
 namespace NUnitTestCashConverter
 {
-    public abstract class Money
+    public  class Money : Expression
     {
-        public int amount;
-        public string currency;
+        internal int amount;
+        internal string currency;
      
         public bool equals(Object object1)
         {
             Money money = (Money)object1;
-            return amount == money.amount && GetType().Equals(money.GetType());
+            return amount == money.amount && Currency().Equals(money.Currency());
         }
 
         public Money(int amount, string currency) 
@@ -21,18 +21,20 @@ namespace NUnitTestCashConverter
             this.currency = currency;
         }
 
-        public abstract Money Times(int multipleer);
+        public Money Times(int multiplier)
+        {
+            return new Money(amount * multiplier, currency);
+        }
 
-        
 
         internal static Money Dollar(int amount)
         {
-            return  new Dollar(amount,"USD");
+            return  new Money(amount,"USD");
         }
 
         internal static Money Franc (int amount)
         {
-            return new Franc(amount,"CHF");
+            return new Money(amount,"CHF");
         }
 
         public override bool Equals(object obj)
@@ -52,6 +54,11 @@ namespace NUnitTestCashConverter
         public string Currency()
         {
             return this.currency;
+        }
+
+       public Expression Plus(Money addend)
+        {
+            return new Money(amount + addend.amount, currency);
         }
     }
 }
