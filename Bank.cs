@@ -6,7 +6,9 @@ namespace NUnitTestCashConverter
     {
         internal Money reduce(Expression sourse, string to)
         {
-            return Money.Dollar(10);
+            if (sourse.GetType() == typeof(Money)) return (Money)sourse.Reduce(to);
+            Sum sum = (Sum)sourse;
+            return sourse.Reduce(to);
         }
     }
 }

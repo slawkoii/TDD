@@ -53,6 +53,25 @@ namespace NUnitTestCashConverter
             Money reduced = bank.reduce(sum, "USD");
             Assert.AreEqual(Money.Dollar(10), reduced);
         }
+
+        [Test]
+
+        public void TestPlusReturnSum()
+        {
+            Money five = Money.Dollar(5);
+            Expression sum = five.Plus(five);
+           // Sum sum = (Sum)result;
+          //  Assert.AreEqual(five, sum.augend);
+          //  Assert.AreEqual(five, sum.addend);
+        }
         
+        [Test]
+
+        public void TestReduceMoney()
+        {
+            Bank bank = new Bank();
+            Money result = bank.reduce(Money.Dollar(1), "USD");
+            Assert.AreEqual(Money.Dollar(1), result);
+        }
     }
 }

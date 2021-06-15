@@ -58,7 +58,12 @@ namespace NUnitTestCashConverter
 
        public Expression Plus(Money addend)
         {
-            return new Money(amount + addend.amount, currency);
+            return new Sum(this, addend);
+        }
+
+        public Money Reduce(string to)
+        {
+            return this;
         }
     }
 }
