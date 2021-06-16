@@ -50,7 +50,7 @@ namespace NUnitTestCashConverter
             Money five = Money.Dollar(5);
             Expression sum = five.Plus(five);
             Bank bank = new Bank();
-            Money reduced = bank.reduce(sum, "USD");
+            Money reduced = bank.Reduce(sum, "USD");
             Assert.AreEqual(Money.Dollar(10), reduced);
         }
 
@@ -70,7 +70,17 @@ namespace NUnitTestCashConverter
         public void TestReduceMoney()
         {
             Bank bank = new Bank();
-            Money result = bank.reduce(Money.Dollar(1), "USD");
+            Money result = bank.Reduce(Money.Dollar(1), "USD");
+            Assert.AreEqual(Money.Dollar(1), result);
+        }
+
+        [Test]
+
+        public void TestReduceMoneyDifferentCurrency()
+        {
+            Bank bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            Money result = bank.Reduce(Money.Franc(2), "USD");
             Assert.AreEqual(Money.Dollar(1), result);
         }
     }

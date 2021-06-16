@@ -15,7 +15,7 @@ namespace NUnitTestCashConverter
 
        
 
-        Money Expression.Reduce(string to)
+        Money Expression.Reduce(Bank bank, string to)
         {
             int amount = addend.amount + augend.amount;
             return new Money(amount, to);
