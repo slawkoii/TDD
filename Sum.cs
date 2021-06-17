@@ -1,27 +1,27 @@
 ﻿namespace NUnitTestCashConverter
 {
-    public class Sum : Expression
+    public class Sum : IExpression
     {
-        public Expression augend;
-        public Expression addend;
+        public IExpression augend;
+        public IExpression addend;
 
-        public Sum(Expression augend, Expression addend)
+        public Sum(IExpression augend, IExpression addend)
         {
             this.augend = augend;
             this.addend = addend;
         }
 
-        public Expression Plus(Expression addend)
+        public IExpression Plus(IExpression addend)
         {
             return new Sum(this, addend);
         }
 
-        public Expression Times(int multiplier)
+        public IExpression Times(int multiplier)
         {
             return new Sum(augend.Times(multiplier), addend.Times(multiplier));
         }
 
-        Money Expression.Reduce(Bank bank, string to)
+        Money IExpression.Reduce(Bank bank, string to)
         {
             int amount = addend.Reduce(bank, to).amount + augend.Reduce(bank, to).amount;
             return new Money(amount, to);

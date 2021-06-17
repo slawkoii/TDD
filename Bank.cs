@@ -5,7 +5,7 @@ namespace NUnitTestCashConverter
     public class Bank
     {
         private Hashtable rates = new Hashtable();
-        public Money Reduce(Expression sourse, string to)
+        public Money Reduce(IExpression sourse, string to)
         {
             if (sourse.GetType() == typeof(Money)) return (Money)sourse.Reduce(this, to);
             return sourse.Reduce(this, to);

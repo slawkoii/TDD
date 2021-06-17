@@ -2,7 +2,7 @@
 
 namespace NUnitTestCashConverter
 {
-    public class Money : Expression
+    public class Money : IExpression
     {
         internal int amount;
         internal string currency;
@@ -19,7 +19,7 @@ namespace NUnitTestCashConverter
             this.currency = currency;
         }
 
-        public Expression Times(int multiplier)
+        public IExpression Times(int multiplier)
         {
             return new Money(amount * multiplier, currency);
         }
@@ -54,7 +54,7 @@ namespace NUnitTestCashConverter
             return this.currency;
         }
 
-        public Expression Plus(Expression addend)
+        public IExpression Plus(IExpression addend)
         {
             return new Sum(this, addend);
         }

@@ -1,9 +1,9 @@
 ﻿namespace NUnitTestCashConverter
 {
-    public interface Expression
+    public interface IExpression
     {
         Money Reduce(Bank bank, string to);
-        public Expression Times(int multiplier);
-        public Expression Plus(Expression addend);
+        public IExpression Times(int multiplier);
+        public IExpression Plus(IExpression addend);
     }
 }
