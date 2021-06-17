@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NUnitTestCashConverter
+﻿namespace NUnitTestCashConverter
 {
     public class Sum : Expression
     {
@@ -25,7 +23,7 @@ namespace NUnitTestCashConverter
 
         Money Expression.Reduce(Bank bank, string to)
         {
-            int amount = addend.Reduce(bank,to).amount + augend.Reduce(bank,to).amount;
+            int amount = addend.Reduce(bank, to).amount + augend.Reduce(bank, to).amount;
             return new Money(amount, to);
         }
     }

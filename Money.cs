@@ -1,21 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NUnitTestCashConverter
 {
-    public  class Money : Expression
+    public class Money : Expression
     {
         internal int amount;
         internal string currency;
-     
+
         public bool equals(Object object1)
         {
             Money money = (Money)object1;
             return amount == money.amount && Currency().Equals(money.Currency());
         }
 
-        public Money(int amount, string currency) 
+        public Money(int amount, string currency)
         {
             this.amount = amount;
             this.currency = currency;
@@ -29,12 +27,12 @@ namespace NUnitTestCashConverter
 
         internal static Money Dollar(int amount)
         {
-            return  new Money(amount,"USD");
+            return new Money(amount, "USD");
         }
 
-        internal static Money Franc (int amount)
+        internal static Money Franc(int amount)
         {
-            return new Money(amount,"CHF");
+            return new Money(amount, "CHF");
         }
 
         public override bool Equals(object obj)
@@ -56,7 +54,7 @@ namespace NUnitTestCashConverter
             return this.currency;
         }
 
-       public Expression Plus(Expression addend)
+        public Expression Plus(Expression addend)
         {
             return new Sum(this, addend);
         }
@@ -64,7 +62,7 @@ namespace NUnitTestCashConverter
         public Money Reduce(Bank bank, string to)
         {
             int rate = bank.Rate(currency, to);
-            return new Money(amount / rate,to);
+            return new Money(amount / rate, to);
         }
     }
 }

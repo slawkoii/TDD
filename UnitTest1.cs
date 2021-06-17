@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System;
 
 namespace NUnitTestCashConverter
 {
@@ -13,8 +12,8 @@ namespace NUnitTestCashConverter
         [Test]
         public void TestMultiplication()
         {
-            Money five = Money.Dollar(5);                      
-            Assert.AreEqual(Money.Dollar(10), five.Times(2));            
+            Money five = Money.Dollar(5);
+            Assert.AreEqual(Money.Dollar(10), five.Times(2));
             Assert.AreEqual(Money.Dollar(15), five.Times(3));
         }
 
@@ -23,7 +22,7 @@ namespace NUnitTestCashConverter
         public void TestEquality()
         {
             Assert.IsTrue(Money.Dollar(5).equals(Money.Dollar(5)));
-            Assert.IsFalse(Money.Dollar(5).equals(Money.Dollar(6)));                
+            Assert.IsFalse(Money.Dollar(5).equals(Money.Dollar(6)));
             Assert.IsFalse(Money.Franc(5).equals(Money.Dollar(5)));
         }
 
@@ -39,13 +38,13 @@ namespace NUnitTestCashConverter
 
         public void TestCurrency()
         {
-            Assert.AreEqual("USD",Money.Dollar(1).Currency());
+            Assert.AreEqual("USD", Money.Dollar(1).Currency());
             Assert.AreEqual("CHF", Money.Franc(1).Currency());
         }
 
-       [Test]
+        [Test]
 
-       public void TestSimpleAddition()
+        public void TestSimpleAddition()
         {
             Money five = Money.Dollar(5);
             Expression sum = five.Plus(five);
@@ -59,11 +58,11 @@ namespace NUnitTestCashConverter
         public void TestPlusReturnSum()
         {
             Money five = Money.Dollar(5);
-            Sum sum = (Sum)five.Plus(five);           
+            Sum sum = (Sum)five.Plus(five);
             Assert.AreEqual(five, sum.augend);
             Assert.AreEqual(five, sum.addend);
         }
-        
+
         [Test]
 
         public void TestReduceMoney()

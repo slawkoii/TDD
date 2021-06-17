@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
 namespace NUnitTestCashConverter
 {
     public class Bank
     {
-        private Hashtable rates = new Hashtable(); 
+        private Hashtable rates = new Hashtable();
         public Money Reduce(Expression sourse, string to)
         {
             if (sourse.GetType() == typeof(Money)) return (Money)sourse.Reduce(this, to);
