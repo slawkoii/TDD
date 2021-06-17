@@ -4,20 +4,28 @@ namespace NUnitTestCashConverter
 {
     public class Sum : Expression
     {
-        public Money augend;
-        public Money addend;
+        public Expression augend;
+        public Expression addend;
 
-        public Sum(Money augend, Money addend)
+        public Sum(Expression augend, Expression addend)
         {
             this.augend = augend;
             this.addend = addend;
-        }     
+        }
 
-       
+        public Expression Plus(Expression addend)
+        {
+            return new Sum(this, addend);
+        }
+
+        public Expression Times(int multiplier)
+        {
+            return new Sum(augend.Times(multiplier), addend.Times(multiplier));
+        }
 
         Money Expression.Reduce(Bank bank, string to)
         {
-            int amount = addend.amount + augend.amount;
+            int amount = addend.Reduce(bank,to).amount + augend.Reduce(bank,to).amount;
             return new Money(amount, to);
         }
     }

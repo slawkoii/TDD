@@ -83,5 +83,45 @@ namespace NUnitTestCashConverter
             Money result = bank.Reduce(Money.Franc(2), "USD");
             Assert.AreEqual(Money.Dollar(1), result);
         }
+
+        [Test]
+
+        public void TestMixedAddition()
+        {
+            Expression fiveBcks = Money.Dollar(5);
+            Expression tenFrancs = Money.Franc(10);
+            Bank bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            Money result = bank.Reduce(fiveBcks.Plus(tenFrancs), "USD");
+            Assert.AreEqual(Money.Dollar(10), result);
+        }
+
+
+        [Test]
+
+        public void TestSumPlusMoney()
+        {
+            Expression fiveBcks = Money.Dollar(5);
+            Expression tenFrancs = Money.Franc(10);
+            Bank bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            Expression sum = new Sum(fiveBcks, tenFrancs).Plus(fiveBcks);
+            Money result = bank.Reduce(sum, "USD");
+            Assert.AreEqual(Money.Dollar(15), result);
+        }
+
+
+        [Test]
+
+        public void TestSumTimesMoney()
+        {
+            Expression fiveBcks = Money.Dollar(5);
+            Expression tenFrancs = Money.Franc(10);
+            Bank bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            Expression sum = new Sum(fiveBcks, tenFrancs).Times(2);
+            Money result = bank.Reduce(sum, "USD");
+            Assert.AreEqual(Money.Dollar(20), result);
+        }
     }
 }

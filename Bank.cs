@@ -9,7 +9,6 @@ namespace NUnitTestCashConverter
         public Money Reduce(Expression sourse, string to)
         {
             if (sourse.GetType() == typeof(Money)) return (Money)sourse.Reduce(this, to);
-            Sum sum = (Sum)sourse;
             return sourse.Reduce(this, to);
         }
 

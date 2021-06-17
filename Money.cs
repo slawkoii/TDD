@@ -21,7 +21,7 @@ namespace NUnitTestCashConverter
             this.currency = currency;
         }
 
-        public Money Times(int multiplier)
+        public Expression Times(int multiplier)
         {
             return new Money(amount * multiplier, currency);
         }
@@ -56,7 +56,7 @@ namespace NUnitTestCashConverter
             return this.currency;
         }
 
-       public Expression Plus(Money addend)
+       public Expression Plus(Expression addend)
         {
             return new Sum(this, addend);
         }
