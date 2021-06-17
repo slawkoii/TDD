@@ -59,10 +59,9 @@ namespace NUnitTestCashConverter
         public void TestPlusReturnSum()
         {
             Money five = Money.Dollar(5);
-            Expression sum = five.Plus(five);
-           // Sum sum = (Sum)result;
-          //  Assert.AreEqual(five, sum.augend);
-          //  Assert.AreEqual(five, sum.addend);
+            Sum sum = (Sum)five.Plus(five);           
+            Assert.AreEqual(five, sum.augend);
+            Assert.AreEqual(five, sum.addend);
         }
         
         [Test]
